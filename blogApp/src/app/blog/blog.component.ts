@@ -33,6 +33,12 @@ export class BlogComponent {
     }
   ];
   addPost(form: NgForm) {
+    
+    if (form.invalid) {
+      alert('Por favor, rellene todos los campos correctamente.');
+      return;
+    }
+
     this.postList.push({ ...this.newPost });
     this.newPost = { title: '', image: '', text: '', date: '' };
     form.resetForm();
