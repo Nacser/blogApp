@@ -1,1 +1,73 @@
-<p>blog works!</p>
+<header>
+  <h1>blogApp</h1>
+  <hr />
+</header>
+<div class="container">
+  <div class="form-section">
+    <h2>¡Comparte tus ideas!</h2>
+    <form #postForm="ngForm" (ngSubmit)="addPost(postForm)">
+      <div class="form-group">
+        <label for="title">Título:</label>
+        <input
+          id="title"
+          [(ngModel)]="newPost.title"
+          name="title"
+          required
+          #title="ngModel"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="image">Imagen (URL):</label>
+        <input
+          id="image"
+          [(ngModel)]="newPost.image"
+          name="image"
+          required
+          required
+          pattern="https?://.+"
+          #image="ngModel"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="text">Texto:</label>
+        <textarea
+          id="text"
+          [(ngModel)]="newPost.text"
+          name="text"
+          required
+          #text="ngModel"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="date">Fecha:</label>
+        <input
+          id="date"
+          type="date"
+          [(ngModel)]="newPost.date"
+          name="date"
+          required
+          #date="ngModel"
+        />
+      </div>
+
+      <button type="submit" [disabled]="postForm.invalid">
+        Añadir tu publicación
+      </button>
+    </form>
+  </div>
+
+  <div class="list-section">
+    <h2>Post de la comunidad</h2>
+    <ul>
+      <li *ngFor="let post of postList">
+        <h3>{{ post.title }}</h3>
+        <img [src]="post.image" alt="{{ post.title }}" />
+        <p>{{ post.date | date }}</p>
+        <p>{{ post.text }}</p>
+      </li>
+    </ul>
+  </div>
+</div>
