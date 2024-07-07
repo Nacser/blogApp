@@ -29,7 +29,6 @@
           [(ngModel)]="newPost.image"
           name="image"
           required
-          required
           pattern="https?://.+"
           #image="ngModel"
         />
@@ -76,9 +75,7 @@
         </div>
       </div>
 
-      <button type="submit" [disabled]="postForm.invalid">
-        Añadir tu publicación
-      </button>
+      <button type="submit">Añadir tu publicación</button>
     </form>
   </div>
 
