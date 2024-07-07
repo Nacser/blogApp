@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -32,4 +32,9 @@ export class BlogComponent {
       date: new Date().toISOString().substring(0, 10)
     }
   ];
+  addPost(form: NgForm) {
+    this.postList.push({ ...this.newPost });
+    this.newPost = { title: '', image: '', text: '', date: '' };
+    form.resetForm();
+  }
 }
