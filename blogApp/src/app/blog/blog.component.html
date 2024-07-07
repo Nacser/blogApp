@@ -15,6 +15,11 @@
           required
           #title="ngModel"
         />
+        <div *ngIf="title?.invalid && title?.touched">
+          <small *ngIf="title?.errors?.['required']"
+            >El título es obligatorio.</small
+          >
+        </div>
       </div>
 
       <div class="form-group">
@@ -24,10 +29,17 @@
           [(ngModel)]="newPost.image"
           name="image"
           required
-          required
           pattern="https?://.+"
           #image="ngModel"
         />
+        <div *ngIf="image?.invalid && image?.touched">
+          <small *ngIf="image?.errors?.['required']"
+            >La URL de la imagen es obligatoria.</small
+          >
+          <small *ngIf="image?.errors?.['pattern']"
+            >La URL de la imagen no es válida.</small
+          >
+        </div>
       </div>
 
       <div class="form-group">
@@ -39,6 +51,11 @@
           required
           #text="ngModel"
         ></textarea>
+        <div *ngIf="text?.invalid && text?.touched">
+          <small *ngIf="text?.errors?.['required']"
+            >El texto es obligatorio.</small
+          >
+        </div>
       </div>
 
       <div class="form-group">
@@ -51,11 +68,14 @@
           required
           #date="ngModel"
         />
+        <div *ngIf="date?.invalid && date?.touched">
+          <small *ngIf="date?.errors?.['required']"
+            >La fecha es obligatoria.</small
+          >
+        </div>
       </div>
 
-      <button type="submit" [disabled]="postForm.invalid">
-        Añadir tu publicación
-      </button>
+      <button type="submit">Añadir tu publicación</button>
     </form>
   </div>
 
